@@ -32,22 +32,17 @@ public class CommandType {
 
 
 
-	/* Keine Ahnung, was er da haben will.
-	 * Fragt am besten mal nach.
-	 * 
-	 * Wenn ich das so richtig verstanden habe, müssen wir noch
-	 * Standardkonstruktoren für jede Klasse anlegen.
-	 */
+
 	public Command createInstance()
 	{
-//		if(name == "Direction")
-//			return new Direction();
-//		if(name == "Gear")
-//			return new Gear();
-//		if(name == "Repetition")
-//			return new Repetition();
-//		if(name == "Pause")
-//			return new Pause();
+		if(name == "Direction")
+			return new Direction("Direction");
+		if(name == "Gear")
+			return new Gear("Gear");
+		if(name == "Repetition")
+			return new Repetition("Repetition");
+		if(name == "Pause")
+			return new Pause("Pause");
 		return null;	
 		
 	}
