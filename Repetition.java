@@ -1,3 +1,5 @@
+import hsrt.mec.controldeveloper.core.com.command.IRepetition;
+
 /**
  * Aufgabenblatt 1
  * Aufgabe 2

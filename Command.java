@@ -1,3 +1,5 @@
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
+
 /**
  * Aufgabenblatt 1
  * Aufgabe 2
@@ -9,7 +11,7 @@
 public abstract class Command implements ICommand {				// erbt vom Interface (entspricht Header-Datei) ICommand
 	private String name;
 	/**
-	 * Konstruktor muss einen String name übergeben bekommen.
+	 * Konstruktor muss einen String name ï¿½bergeben bekommen.
 	 * @param name Name des Befehls
 	 */
 	Command(String name) {
@@ -20,7 +22,7 @@ public abstract class Command implements ICommand {				// erbt vom Interface (en
 		return name;
 	}
 	/**
-	 * Get-Methode gibt den namen des Commands zurück.
+	 * Get-Methode gibt den namen des Commands zurï¿½ck.
 	 * @return name 
 	 */
 }
