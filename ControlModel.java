@@ -5,7 +5,7 @@ public class ControlModel {
 
 	private static ControlModel instance = null;
 	private CommandType commandTypes[] = new CommandType[4];
-	private CommandList controlProcess;
+	private CommandList controlProcess = new CommandList();
 	/**
 	 * @param args
 	 */
@@ -35,6 +35,33 @@ public class ControlModel {
 		commandTypes[3] = new CommandType("Pause");
 		
 	}
+	
+	// Zugriff auf die verkettete Liste
+	public boolean add(Command c) 
+	{
+		return controlProcess.add(c);
+	}
+	
+	public boolean remove(int pos)
+	{
+		return controlProcess.remove(pos);
+	}
+	
+	public Command get(int pos)
+	{
+		return controlProcess.get(pos);
+	}
+	
+	public boolean moveUp(int pos)
+	{
+		return controlProcess.moveUp(pos);
+	}
+	
+	public boolean moveDown(int pos)
+	{
+		return controlProcess.moveDown(pos);
+	}
+	
 	
 	public boolean load(File f)
 	{
