@@ -3,7 +3,7 @@ import java.io.File;
 
 public class ControlModel {
 
-	private ControlModel instance;
+	private static ControlModel instance = null;
 	private CommandType commandTypes[] = new CommandType[4];
 	private CommandList controlProcess;
 	/**
@@ -22,7 +22,9 @@ public class ControlModel {
 	public ControlModel getInstance()
 	{
 		
-		return null;
+		if (instance==null)
+			instance= new ControlModel();
+		return instance;
 	}
 	
 	public void createCommandTyes()
