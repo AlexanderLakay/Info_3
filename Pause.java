@@ -15,6 +15,11 @@ public class Pause extends Command implements IPause {
 	Pause(String name) {
 		super(name);
 	}
+	
+	Pause(String name, double duration) {
+		super(name);
+		setDuration(duration);
+	}
 	/**
 	 * Gibt den Dauer-Wert zur�ck.
 	 * @return duration

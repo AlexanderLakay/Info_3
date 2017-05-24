@@ -12,19 +12,22 @@ public class CommandList {
 		root = null;
 	}
 	/**
-	 * Zum Hinzufügen von neuen Listenelementen muss ein Command-Objekt c übergeben werden.
+	 * Zum Hinzufï¿½gen von neuen Listenelementen muss ein Command-Objekt c ï¿½bergeben werden.
 	 * @param c Name des Command-Objekts
-	 * Wenn add ausgeführt wurde, wird true zurück gegeben.
+	 * Wenn add ausgefï¿½hrt wurde, wird true zurï¿½ck gegeben.
 	 * @return true
 	 */
-	public boolean add(Command c) {		// NEUES ELEMENT HINZUFÜGEN
+	public boolean add(Command c) {		// NEUES ELEMENT HINZUFï¿½GEN
 				
+		if(c == null)
+			return false;
+		
 		if (root == null) {				// Wenn root das erste Element ist, bekommt root
 			root = new Element(c);		// 		den Command c zugewiesen.
 		}
 		else {	
 			Element tmp = root;
-			while(tmp.getNext() != null) {	// läuft Liste durch, bis letztes Element gefunden ist
+			while(tmp.getNext() != null) {	// lï¿½uft Liste durch, bis letztes Element gefunden ist
 				tmp = tmp.getNext();
 			}								// Wenn Schleife beendet, ist tmp mein letztes Element.
 											// 		Dann kann an dieser Stelle ein neues Element er-
@@ -36,9 +39,9 @@ public class CommandList {
 		return true;
 	}
 	/**
-	 * remove bekommt die Stelle des zu löschenden Listenelementes übergeben.
+	 * remove bekommt die Stelle des zu lï¿½schenden Listenelementes ï¿½bergeben.
 	 * @param pos Angabe der Position
-	 * Bei erfolgreichem Löschen wird true zurück gegeben, andernfalls false.
+	 * Bei erfolgreichem Lï¿½schen wird true zurï¿½ck gegeben, andernfalls false.
 	 * @return true
 	 */
 	public boolean remove(int pos) {		// ELEMENT AN STELLE POS ENTFERNEN
@@ -51,19 +54,19 @@ public class CommandList {
 			return false;
 		}
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fängt beim root-Element an die Liste zu durchlaufen				
+		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt beim root-Element an die Liste zu durchlaufen				
 			
 			if (tmp.getNext() != null)	
 				tmp = tmp.getNext();
-				// Wenn während der for-Schleife das Listenende erreicht	
+				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht	
 			else
-				return false;				//		ist, wird false als Fehlermeldung zurückgegeben.
+				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
 		}									// Am Ende der for-Schleife ist tmp das Element, das
-											// 		gelöscht werden soll.
+											// 		gelï¿½scht werden soll.
 				//		Elements anpassen, sodass tmp raus fliegt
 		
 		if(tmp.getNext() != null){
-			tmp.getPrev().setNext(tmp.getNext());		// Next und prev des vorherigen und des nächsten
+			tmp.getPrev().setNext(tmp.getNext());		// Next und prev des vorherigen und des nï¿½chsten
 			tmp.getNext().setPrev(tmp.getPrev());
 		}else{
 			tmp.getPrev().setNext(null);
@@ -72,20 +75,20 @@ public class CommandList {
 			
 		return true;
 		
-		// ÄNDERUNG: LÖSCHEN VOM LETZTEN ELEMENT!!
+		// ï¿½NDERUNG: Lï¿½SCHEN VOM LETZTEN ELEMENT!!
 	}
 	/**
-	 * get gibt dasjenige Listenelement zurück, dessen Position übergeben wurde.
+	 * get gibt dasjenige Listenelement zurï¿½ck, dessen Position ï¿½bergeben wurde.
 	 * @param pos Angabe der Position
 	 *       
 	 * @return tmp.getElement()
 	 */
-	public Command get(int pos) {			// COMMAND-OBJEKT DES ELEMENTS AN POSITION POS ZURÜCKGEBEN
+	public Command get(int pos) {			// COMMAND-OBJEKT DES ELEMENTS AN POSITION POS ZURï¿½CKGEBEN
 		
 		if(pos < 0) {
 			return null;
 		}
-		Element tmp = root;					// Läuft wie oben die Liste bis zur angegebenen Position
+		Element tmp = root;					// Lï¿½uft wie oben die Liste bis zur angegebenen Position
 		for (int i = 0; i < pos; i++) {		//		pos durch. Listenende vor pos gibt ein return
 						// 		null. Am Ende der for-Schleife ist tmp mein 
 			if (tmp.getNext() != null)	
@@ -96,26 +99,26 @@ public class CommandList {
 		}
 		
 		return tmp.getElement();			// Gibt das Command-Element, das an diesem Listenelement
-	}										//		hängt zurück.
+	}										//		hï¿½ngt zurï¿½ck.
 	
-	// ÄNDERUNG: WAS IST WENN POS > LÄNGE LISTE!!
+	// ï¿½NDERUNG: WAS IST WENN POS > Lï¿½NGE LISTE!!
 	
 	/**
-	 * moveUp rückt das Listenelement mit der übergebenen Position um einen Platz weiter hoch.
+	 * moveUp rï¿½ckt das Listenelement mit der ï¿½bergebenen Position um einen Platz weiter hoch.
 	 * @param pos Angabe der Position
-	 * Zurückgegeben wird true wenn das Verschieben erfolgreich war, andernfalls false.
+	 * Zurï¿½ckgegeben wird true wenn das Verschieben erfolgreich war, andernfalls false.
 	 * @return true
 	 */
 	public boolean moveUp(int pos) {		// ELEMENT AN POSITION POS EINS HOCH VERSCHIEBEN
 		
-		// IDEE: Nicht die Liste selber wird verändert, sondern nur die Commands, die an der Liste 
-		//		 hängen werden vertauscht.
+		// IDEE: Nicht die Liste selber wird verï¿½ndert, sondern nur die Commands, die an der Liste 
+		//		 hï¿½ngen werden vertauscht.
 		
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fängt wie obenbeim root-Element an die Liste 
+		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt wie obenbeim root-Element an die Liste 
 			tmp = tmp.getNext();			//		zu durchlaufen				
-			if (tmp == null)				// Wenn während der for-Schleife das Listenende erreicht				
-				return false;				//		ist, wird false als Fehlermeldung zurückgegeben.
+			if (tmp == null)				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht				
+				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
 		}
 		
 		if(tmp.getPrev() == null)			// Wenn tmp das erste Listenelement ist, wird nichts
@@ -125,8 +128,8 @@ public class CommandList {
 		Command commandFesthalten;
 		
 		commandFesthalten = davor.getElement();
-		davor.setElement(tmp.getCommand()); 	// Command von tmp wird an davor gehängt
-		tmp.setElement(commandFesthalten); 		// Command von davor wird an tmp gehängt
+		davor.setElement(tmp.getCommand()); 	// Command von tmp wird an davor gehï¿½ngt
+		tmp.setElement(commandFesthalten); 		// Command von davor wird an tmp gehï¿½ngt
 		
 		return true;
 	}
@@ -139,14 +142,14 @@ public class CommandList {
 	 */
 	public boolean moveDown(int pos) {
 		
-		// IDEE: Nicht die Liste selber wird verändert, sondern nur die Commands, die an der Liste 
-		//		 hängen werden vertauscht.
+		// IDEE: Nicht die Liste selber wird verï¿½ndert, sondern nur die Commands, die an der Liste 
+		//		 hï¿½ngen werden vertauscht.
 				
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fängt wie obenbeim root-Element an die Liste 
+		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt wie obenbeim root-Element an die Liste 
 			tmp = tmp.getNext();			//		zu durchlaufen				
-			if (tmp == null)				// Wenn während der for-Schleife das Listenende erreicht				
-				return false;				//		ist, wird false als Fehlermeldung zurückgegeben.
+			if (tmp == null)				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht				
+				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
 		}
 		
 		if(tmp.getNext() == null)			// Wenn tmp das letzte Listenelement ist, wird nichts
@@ -157,8 +160,8 @@ public class CommandList {
 		
 		commandFesthalten = danach.getElement();
 		
-		danach.setElement(tmp.getCommand()); 	// Command von tmp wird an danach gehängt
-		tmp.setElement(commandFesthalten); 		// Command von danach wird an tmp gehängt
+		danach.setElement(tmp.getCommand()); 	// Command von tmp wird an danach gehï¿½ngt
+		tmp.setElement(commandFesthalten); 		// Command von danach wird an tmp gehï¿½ngt
 		
 		return true;
 	}

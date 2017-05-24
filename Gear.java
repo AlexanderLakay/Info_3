@@ -17,6 +17,12 @@ public class Gear extends Command implements IGear {
 	Gear(String name) {
 		super(name);
 	}
+	
+	Gear(String name, int speed, double duration) {
+		super(name);
+		setSpeed(speed);
+		setDuration(duration);
+	}
 	/**
 	 * Geschwindigkeits-Angabe wird als Integer-Wert �bergeben.
 	 * @param speed Geschwindigkeits-Angabe

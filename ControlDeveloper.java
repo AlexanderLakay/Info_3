@@ -1,8 +1,10 @@
+import java.io.File;
+
 /**
  * Aufgabenblatt 1
  * Aufgabe 1, 3
  * 
- * main-Programm zum Ausführen und Testen der Klassen.
+ * main-Programm zum Ausfï¿½hren und Testen der Klassen.
  * 
  * @author Kai Heckl
  *									
@@ -11,49 +13,50 @@
 public class ControlDeveloper {
 
 	private static String name = "Control-Developer";
-	private static Command commands[] = new Command[4];			// Array, das "commands[]" heißt und den Datentyp Command[4] hat
-	private static CommandList commandList;						
-	
+	private static Command commands[] = new Command[4];			// Array, das "commands[]" heiï¿½t und den Datentyp Command[4] hat
+	private static  ControlModel cm = ControlModel.getInstance();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		//System.out.println(name);				// direkte Ausgabe
-		//System.out.println(getname());		// Ausgabe über get-Methode
+		//System.out.println(getname());		// Ausgabe ï¿½ber get-Methode
 		testCommands();
-		printCommands();
+		//printCommands();
 		
-		commandList = new CommandList();
+		
 		
 		for (int i = 0; i < 4; i++) {			// CommandList mit Befehlen aus dem command[]-
-			commandList.add(commands[i]);		//		 Array befüllen.
+			//cm.add(commands[i]);		//		 Array befï¿½llen.
 			
 		}
 		//commandList.get(3);
 		
-		commandList.add(commands[1]);
-		commandList.remove(3);
-		commandList.get(3);
+		File daten = new File("daten.txt");
+		//cm.save(daten);
+		cm.load(daten);
+		
+		
 		
 		for (int i = 0; i < 5; i++) {
-			if(commandList.get(i) instanceof Command)
-				System.out.println(commandList.get(i).toString());
+			if(cm.get(i) instanceof Command)
+				System.out.println(cm.get(i).toString());
 		}
 		
 	}
 	
-	public static String getname () {				// get-Methode: Gibt den Namen zurück
+	public static String getname () {				// get-Methode: Gibt den Namen zurï¿½ck
 		return name;
 	}
 	
-	public static void setname (String neuerName) {	// set-Methode: Bekommt neuen Namen übergeben und 
-		name = neuerName;						 	//		überschreibt alten Namen damit.
+	public static void setname (String neuerName) {	// set-Methode: Bekommt neuen Namen ï¿½bergeben und 
+		name = neuerName;						 	//		ï¿½berschreibt alten Namen damit.
 	}
 	
 	public static void testCommands () {			
-		commands[0] = new Direction("direction");	// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
-		commands[1] = new Gear("gear");				// 		nacheinander in das Array.
-		commands[2] = new Repetition("repetition");
-		commands[3] = new Pause("pause");				
+		commands[0] = new Direction("Direction", 90);	// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
+		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
+		commands[2] = new Repetition("Repetition",3, 10);
+		commands[3] = new Pause("Pause", 30);				
 	}
 	
 	public static void printCommands() {

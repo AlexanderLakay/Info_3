@@ -23,7 +23,7 @@ public class ControlModel {
 		
 	}
 	
-	public ControlModel getInstance()
+	public static ControlModel getInstance()
 	{
 		
 		if (instance==null)
@@ -70,44 +70,86 @@ public class ControlModel {
 	public boolean load(File f)
 	{
 		controlProcess = new CommandList();
+		Command c = null;
+		Vector daten = new Vector();
+		IOType eingabe = new TextFile(f, false);
+		boolean antwort = eingabe.read(daten);
+		eingabe.close();
 		
-		return false;
+		int i = 0;
+		while(true){
+			
+			if(daten.get(i).toString().equals("Direction")){
+				c = new Direction("Direction", Integer.parseInt((daten.get(i+1).toString())));
+				i+=2;
+				
+			}else if(daten.get(i).toString().equals("Gear")){
+				c = new Gear("Gear", Integer.parseInt(daten.get(i+1).toString()), Double.parseDouble(daten.get(i+2).toString()));
+				i += 3;
+				
+			}else if(daten.get(i).toString().equals("Repetition")){
+				c = new Repetition("Repetition", Integer.parseInt(daten.get(i+1).toString()), Integer.parseInt(daten.get(i+2).toString()));
+				i += 3;
+				
+			}else if(daten.get(i).toString().equals("Pause")){
+				c = new Pause("Pause", Double.parseDouble(daten.get(i+1).toString()));
+				i += 2;
+			}else if(daten.get(i).toString().equals("Ende")){
+					break;
+			}
+			
+			controlProcess.add(c);
+		}
+		
+		return antwort;
 	}
 	
-	// Noch nicht fertig
+	
+	//@SuppressWarnings("unchecked")
 	public boolean save(File f)
 	{
 		IOType ausgabe = new TextFile(f, false);
+		Vector daten = new Vector();
 		
+		boolean antwort = false;
 		int i = 0;
-		boolean ende = false;
-		while(!ende){
-			Command c = controlProcess.get(i);
-			Vector daten = new Vector();
+		
+		while(true){
+			Command c = controlProcess.get(i++);
+			if(c == null)
+				break;
+			//@SuppressWarnings("rawtypes")
+			
 			
 			if(c.getName() == "Direction"){
 				daten.add(c.getName());
-				daten.add(Double.toString(((Direction) c).getDegree()));
-			}
-			
-			if(c.getName() == "Gear"){
+				daten.add(Integer.toString(((Direction) c).getDegree()));
 				
-			}
-			
-			if(c.getName() == "Repetition"){
+			}else if(c.getName() == "Gear"){
+				daten.add(c.getName());
+				daten.add(Integer.toString(((Gear)c).getSpeed()));
+				daten.add(Double.toString(((Gear)c).getDuration()));
 				
-			}
-			
-			if(c.getName() == "Pause"){
+			}else if(c.getName() == "Repetition"){
+				daten.add(c.getName());
+				daten.add(Integer.toString(((Repetition)c).getNrSteps()));
+				daten.add(Integer.toString(((Repetition)c).getNrRepetitions()));
 				
+			}else if(c.getName() == "Pause"){
+				daten.add(c.getName());
+				daten.add(Double.toString(((Pause)c).getDuration()));
+				
+			}else{
+				return false;
 			}
 			
-			ausgabe.write(daten);
+			
 			
 		}
-		
+		daten.add("Ende");
+		antwort = ausgabe.write(daten);
 		ausgabe.close();
-		return false;
+		return antwort;
 	}
 	
 	public void commandPerformed(Command c)

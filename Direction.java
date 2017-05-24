@@ -15,6 +15,11 @@ public class Direction extends Command implements IDirection {		// erbt von Comm
 	Direction (String name) {				// Konstruktor
 		super(name);						// nimmt den super-Namen, weil die Klasse selber keine Variable name hat.	
 	}
+	
+	Direction (String name, int i) {				// Konstruktor
+		super(name);	
+		setDegree(i);
+	}
 	/**
 	 * Winkel-Angabe wird als Integer-Wert �bergeben.
 	 * @param i Winkel-Angabe

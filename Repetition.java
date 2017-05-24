@@ -17,6 +17,12 @@ public class Repetition extends Command implements IRepetition {
 	Repetition(String name) {
 		super(name);
 	}
+	
+	Repetition(String name, int steps, int repetitions) {
+		super(name);
+		setNrSteps(steps);
+		setNrRepetitions(repetitions);
+	}
 	/**
 	 * Gibt die Anzahl der zu wiederholenden Schritte zur�ck.
 	 * @return nrSteps
