@@ -1,6 +1,7 @@
 /**
- * Aufgabenblatt 1
- * Aufgabe 4
+ * Klasse CommandList stellt eine verkettete Liste zum Einfuegen, Loeschen, Verschieben und 
+ * Finden der Command-Befehle dar.
+ * 
  * @author Kai Heckl
  *
  */
@@ -12,126 +13,134 @@ public class CommandList {
 		root = null;
 	}
 	/**
-	 * Zum Hinzufï¿½gen von neuen Listenelementen muss ein Command-Objekt c ï¿½bergeben werden.
+	 * Zum Hinzufuegen von neuen Listenelementen muss ein Command-Objekt c uebergeben werden.
 	 * @param c Name des Command-Objekts
-	 * Wenn add ausgefï¿½hrt wurde, wird true zurï¿½ck gegeben.
+	 * Wenn add ausgefuehrt wurde, wird true zurueck gegeben, im Fehlerfall false.
 	 * @return true
 	 */
-	public boolean add(Command c) {		// NEUES ELEMENT HINZUFï¿½GEN
-				
-		if(c == null)
+	public boolean add(Command c) {			// NEUES ELEMENT HINZUFÜGEN
+					
+		if(c == null)						// Default-Fall
 			return false;
 		
-		if (root == null) {				// Wenn root das erste Element ist, bekommt root
-			root = new Element(c);		// 		den Command c zugewiesen.
-		}
-		else {	
-			Element tmp = root;
-			while(tmp.getNext() != null) {	// lï¿½uft Liste durch, bis letztes Element gefunden ist
-				tmp = tmp.getNext();
-			}								// Wenn Schleife beendet, ist tmp mein letztes Element.
-											// 		Dann kann an dieser Stelle ein neues Element er-
-			Element neu = new Element(c);	//		zeugt werden. Das neue Element steht dann hinter
-			tmp.setNext(neu);				//		tmp, daher tmp.next = neu und neu.prev = tmp.
+			if (root == null) {					// Wenn root das erste Element ist, bekommt root
+				root = new Element(c);			// 		den Command c zugewiesen.
+			}
+			else {	
+				Element tmp = root;
+				while(tmp.getNext() != null) {	// laeuft Liste durch, bis letztes Element gefunden ist
+					tmp = tmp.getNext();
+				}								// Wenn Schleife beendet, ist tmp mein letztes Element.
+												// 		Dann kann an dieser Stelle ein neues Element er-
+			Element neu = new Element(c);		//		zeugt werden. Das neue Element steht dann hinter
+			tmp.setNext(neu);					//		tmp, daher tmp.next = neu und neu.prev = tmp.
 			neu.setPrev(tmp);
-		}
-		
+			}
 		return true;
 	}
+	
 	/**
-	 * remove bekommt die Stelle des zu lï¿½schenden Listenelementes ï¿½bergeben.
+	 * remove bekommt die Stelle des zu loeschenden Listenelementes uebergeben.
 	 * @param pos Angabe der Position
-	 * Bei erfolgreichem Lï¿½schen wird true zurï¿½ck gegeben, andernfalls false.
+	 * Bei erfolgreichem Loeschen wird true zurueck gegeben, andernfalls false.
 	 * @return true
 	 */
 	public boolean remove(int pos) {		// ELEMENT AN STELLE POS ENTFERNEN
 		
-		if(pos == 0) {
-			root = root.getNext();
-			return true;
+		if(pos == 0) {						// Wenn erstes Element geloescht werden soll, wird root
+			root = root.getNext();			//		auf das zweite Element gesetzt. Das prev des
+			root.getNext().setPrev(null); 	//		zweiten Elements ("root.getNext()") wird zurueck-
+			return true;					//		gesetzt ("null").
 		}
-		if(pos < 0) {
+		if(pos < 0) {						// Fehlerfall: Ungültige pos-Angabe
 			return false;
 		}
+		
+		// Für den Fall, dass keiner der oberen Faelle zutrifft, macht er hier weiter:
+		
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt beim root-Element an die Liste zu durchlaufen				
+		for (int i = 0; i < pos; i++ ) {	// Faengt beim root-Element an die Liste mit tmp zu durchlaufen.			
 			
 			if (tmp.getNext() != null)	
-				tmp = tmp.getNext();
-				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht	
-			else
-				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
+				tmp = tmp.getNext();		// Wenn waehrend der for-Schleife das Listenende erreicht								
+			else							//		ist, wird false als Fehlermeldung zurueckgegeben, da
+				return false;				// 		die pos-Angabe dann fehlerhaft war.
 		}									// Am Ende der for-Schleife ist tmp das Element, das
-											// 		gelï¿½scht werden soll.
-				//		Elements anpassen, sodass tmp raus fliegt
+											// 		geloescht werden soll.		
 		
-		if(tmp.getNext() != null){
-			tmp.getPrev().setNext(tmp.getNext());		// Next und prev des vorherigen und des nï¿½chsten
-			tmp.getNext().setPrev(tmp.getPrev());
-		}else{
-			tmp.getPrev().setNext(null);
+		if(tmp.getNext() != null) {			// Wenn Element nicht am Ende der Liste steht.
+			tmp.getPrev().setNext(tmp.getNext());		// Element vor tmp bekommt als next das Element nach tmp.
+			tmp.getNext().setPrev(tmp.getPrev());		// Element nach tmp bekommt als prev das Element vor tmp.
+		}
+		else {								// Wenn tmp das letzte Element ist, bekommt das Element vor tmp
+			tmp.getPrev().setNext(null);	//		null als next.
 			tmp = null;
 		}
 			
-		return true;
-		
-		// ï¿½NDERUNG: Lï¿½SCHEN VOM LETZTEN ELEMENT!!
+		return true;		
 	}
+	
 	/**
-	 * get gibt dasjenige Listenelement zurï¿½ck, dessen Position ï¿½bergeben wurde.
+	 * get gibt das Command-Objekt desjenigen Listenelements zurueck, dessen Position uebergeben wurde.
+	 * Im Fehlerfall wird null zurueckgegeben.
 	 * @param pos Angabe der Position
 	 *       
 	 * @return tmp.getElement()
 	 */
-	public Command get(int pos) {			// COMMAND-OBJEKT DES ELEMENTS AN POSITION POS ZURï¿½CKGEBEN
+	public Command get(int pos) {			// COMMAND-OBJEKT DES ELEMENTS AN POSITION POS ZURUECKGEBEN
 		
-		if(pos < 0) {
+		if(pos < 0) {						// Default-Fall: ungueltige pos-Angabe.
 			return null;
 		}
-		Element tmp = root;					// Lï¿½uft wie oben die Liste bis zur angegebenen Position
+		Element tmp = root;					// Laeuft wie oben die Liste bis zur angegebenen Position
 		for (int i = 0; i < pos; i++) {		//		pos durch. Listenende vor pos gibt ein return
-						// 		null. Am Ende der for-Schleife ist tmp mein 
-			if (tmp.getNext() != null)	
+											// 		null. Am Ende der for-Schleife ist tmp mein 
+											//		Element an der Stelle pos.
+			if (tmp.getNext() != null)				
 				tmp = tmp.getNext();
-										//		Element an der Stelle pos.
-			else
-				return null;
-		}
-		
-		return tmp.getElement();			// Gibt das Command-Element, das an diesem Listenelement
-	}										//		hï¿½ngt zurï¿½ck.
-	
-	// ï¿½NDERUNG: WAS IST WENN POS > Lï¿½NGE LISTE!!
+			else							// Fehler-Fall: ungueltige pos-Angabe (zu gross)
+				return null;		
+		}		
+		return tmp.getElement();			// Gibt das Command-Objekt, das an tmp haengt zurueck.
+	}									
 	
 	/**
-	 * moveUp rï¿½ckt das Listenelement mit der ï¿½bergebenen Position um einen Platz weiter hoch.
+	 * moveUp rueckt das Listenelement mit der uebergebenen Position um einen Platz weiter hoch.
 	 * @param pos Angabe der Position
-	 * Zurï¿½ckgegeben wird true wenn das Verschieben erfolgreich war, andernfalls false.
+	 * Zurueckgegeben wird true wenn das Verschieben erfolgreich war, andernfalls false.
 	 * @return true
 	 */
 	public boolean moveUp(int pos) {		// ELEMENT AN POSITION POS EINS HOCH VERSCHIEBEN
 		
-		// IDEE: Nicht die Liste selber wird verï¿½ndert, sondern nur die Commands, die an der Liste 
-		//		 hï¿½ngen werden vertauscht.
+		return moveDown(pos-1);				// IDEE: moveUp ist ein moveDown des vorherigen Elements
+	
+		
+		
+	/*	// IDEE: Nicht die Liste selber wird veraendert, sondern nur die Commands, die an der Liste 
+		//		 haengen werden vertauscht.
+		
+		if (pos < 0)						// Fehlerfall: ungueltige pos-Angabe
+			return false;
 		
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt wie obenbeim root-Element an die Liste 
-			tmp = tmp.getNext();			//		zu durchlaufen				
-			if (tmp == null)				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht				
-				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
-		}
 		
 		if(tmp.getPrev() == null)			// Wenn tmp das erste Listenelement ist, wird nichts
 			return true;					//		gemacht.
 		
-		Element davor = tmp.getPrev();		// Hilfs-"Zeiger" auf die Listenelemente vor tmp	
-		Command commandFesthalten;
+		for (int i = 0; i < pos; i++ ) {	// Faengt wie oben beim root-Element an die Liste 
+			tmp = tmp.getNext();			//		zu durchlaufen				
+			if (tmp == null)				// Wenn waehrend der for-Schleife das Listenende erreicht				
+				return false;				//		ist, wird false als Fehlermeldung zurueckgegeben.
+		}
+		
+		Element davor = tmp.getPrev();		// Hilfs-"Zeiger" auf das Listenelement vor tmp	
+		Command commandFesthalten;			// Hilfs-"Zeiger" auf das Command-Objekt
 		
 		commandFesthalten = davor.getElement();
-		davor.setElement(tmp.getCommand()); 	// Command von tmp wird an davor gehï¿½ngt
-		tmp.setElement(commandFesthalten); 		// Command von davor wird an tmp gehï¿½ngt
+		davor.setElement(tmp.getCommand()); 	// Command von tmp wird an davor gehaengt
+		tmp.setElement(commandFesthalten); 		// Command von davor wird an tmp gehaengt
 		
-		return true;
+		return true; */
 	}
 	/**
 	 * moveDown funtkioniert analog zu moveUp.
@@ -142,14 +151,17 @@ public class CommandList {
 	 */
 	public boolean moveDown(int pos) {
 		
-		// IDEE: Nicht die Liste selber wird verï¿½ndert, sondern nur die Commands, die an der Liste 
-		//		 hï¿½ngen werden vertauscht.
-				
+		// IDEE: Nicht die Liste selber wird veraendert, sondern nur die Commands, die an der Liste 
+		//		 haengen werden vertauscht.
+		
+		if (pos < 0)
+			return false;					// Fehlerfall: ungueltige pos-Angabe.
+		
 		Element tmp = root;	
-		for (int i = 0; i < pos; i++ ) {	// Fï¿½ngt wie obenbeim root-Element an die Liste 
+		for (int i = 0; i < pos; i++ ) {	// Faengt wie obenbeim root-Element an die Liste 
 			tmp = tmp.getNext();			//		zu durchlaufen				
-			if (tmp == null)				// Wenn wï¿½hrend der for-Schleife das Listenende erreicht				
-				return false;				//		ist, wird false als Fehlermeldung zurï¿½ckgegeben.
+			if (tmp == null)				// Wenn waehrend der for-Schleife das Listenende erreicht				
+				return false;				//		ist, wird false als Fehlermeldung zurueckgegeben.
 		}
 		
 		if(tmp.getNext() == null)			// Wenn tmp das letzte Listenelement ist, wird nichts
@@ -160,8 +172,8 @@ public class CommandList {
 		
 		commandFesthalten = danach.getElement();
 		
-		danach.setElement(tmp.getCommand()); 	// Command von tmp wird an danach gehï¿½ngt
-		tmp.setElement(commandFesthalten); 		// Command von danach wird an tmp gehï¿½ngt
+		danach.setElement(tmp.getCommand()); 	// Command von tmp wird an danach gehaengt
+		tmp.setElement(commandFesthalten); 		// Command von danach wird an tmp gehaengt
 		
 		return true;
 	}
