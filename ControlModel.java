@@ -134,6 +134,9 @@ public class ControlModel {
 			// "Ende" Markiert das Listenende
 			}else if(daten.get(i).toString().equals("Ende")){
 					break;
+			}else{
+				// Faengt fehlerhafte Datei ab
+				return false;
 			}
 			
 			controlProcess.add(c);
