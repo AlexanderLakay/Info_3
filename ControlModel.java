@@ -5,9 +5,9 @@ import java.util.Vector;
 
 
 /**
- * 
+ * Klasse zum Verwalten der Befehlsliste, Schnittstelle zur View
  * @author Alexander Lakay
- * Klasse zum Verwalten der Befehlsliste
+ * 
  *
  */
 public class ControlModel {
@@ -48,7 +48,7 @@ public class ControlModel {
 	// Zugriff auf die verkettete Liste
 	/**
 	 * Fuegt ein neues Element zur Liste hinzu
-	 * @param c
+	 * @param c Command Objekt, das zur Liste Hinzugefuegt werden soll
 	 * @return Gibt true zurueck, wenn das Element hinzugefuegt wurde
 	 */
 	public boolean add(Command c) 
@@ -69,7 +69,7 @@ public class ControlModel {
 	/**
 	 * Gibt das Command Objekt an der stelle pos in der Liste zurueck
 	 * @param pos Index des Listenelements
-	 * @return
+	 * @return Gibt das Command Objekt an der stelle pos in der Liste zurueck
 	 */
 	public Command get(int pos)
 	{
@@ -97,12 +97,13 @@ public class ControlModel {
 	}
 	
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	/**
 	 * Laedt die Befehlsliste aus der angegebenen Datei
 	 * @param f Datei, die geladen werden soll
 	 * @return Gibt true zutueck, wenn die Datei geladen wurde
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public boolean load(File f)
 	{
 		controlProcess = new CommandList();
@@ -141,12 +142,13 @@ public class ControlModel {
 		return antwort;
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	
 	/**
 	 * Speichert die Befehlsliste in die angegebene Datei
 	 * @param f Datei, in die die Befehlsliste gespeichert werden soll
 	 * @return gibt true zurueck, wenn die Datei gespeichert wurde
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean save(File f)
 	{
 		IOType ausgabe = new TextFile(f, false);
