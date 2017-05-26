@@ -18,7 +18,7 @@ public class ControlModel {
 	
 	private ControlModel()
 	{
-		
+		// Konstruktor wird nicht benoetigt, da das Objekt durch getInstance() erzeugt wird
 	}
 	
 	/**
