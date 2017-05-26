@@ -4,7 +4,7 @@ import java.io.File;
  * Aufgabenblatt 1
  * Aufgabe 1, 3
  * 
- * main-Programm zum Ausfï¿½hren und Testen der Klassen.
+ * main-Programm zum Ausfuehren und Testen der Klassen.
  * 
  * @author Kai Heckl
  *									
