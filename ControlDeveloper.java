@@ -4,7 +4,7 @@ import java.io.File;
  * Aufgabenblatt 1
  * Aufgabe 1, 3
  * 
- * main-Programm zum Ausf�hren und Testen der Klassen.
+ * main-Programm zum Ausfï¿½hren und Testen der Klassen.
  * 
  * @author Kai Heckl
  *									
@@ -13,30 +13,29 @@ import java.io.File;
 public class ControlDeveloper {
 
 	private static String name = "Control-Developer";
-	private static Command commands[] = new Command[4];			// Array, das "commands[]" hei�t und den Datentyp Command[4] hat
+	private static Command commands[] = new Command[4];
 	private static  ControlModel cm = ControlModel.getInstance();
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		//System.out.println(name);				// direkte Ausgabe
-		//System.out.println(getname());		// Ausgabe �ber get-Methode
+		// Array befuellen
 		testCommands();
 		//printCommands();
 		
 		
 		
-		for (int i = 0; i < 4; i++) {			// CommandList mit Befehlen aus dem command[]-
-			//cm.add(commands[i]);		//		 Array bef�llen.
+		for (int i = 0; i < 4; i++) {
+			cm.add(commands[i]);		// Befehlsliste aus Array befuellen
 			
 		}
-		//commandList.get(3);
-		
+	
+	
+		// Testen von speichern und Laden
 		File daten = new File("daten.txt");
-		//cm.save(daten);
-		cm.load(daten);
+		cm.save(daten);
+		//cm.load(daten);
 		
 		
-		
+		// Befehlsliste ausgeben
 		for (int i = 0; i < 5; i++) {
 			if(cm.get(i) instanceof Command)
 				System.out.println(cm.get(i).toString());
@@ -44,12 +43,13 @@ public class ControlDeveloper {
 		
 	}
 	
-	public static String getname () {				// get-Methode: Gibt den Namen zur�ck
+	// get-Methode: Gibt den Namen zurueck
+	public static String getname () {				
 		return name;
 	}
 	
-	public static void setname (String neuerName) {	// set-Methode: Bekommt neuen Namen �bergeben und 
-		name = neuerName;						 	//		�berschreibt alten Namen damit.
+	public static void setname (String neuerName) {	// set-Methode: Bekommt neuen Namen uebergeben und 
+		name = neuerName;						 	//		ueberschreibt alten Namen damit.
 	}
 	
 	public static void testCommands () {			
