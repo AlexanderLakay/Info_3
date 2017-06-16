@@ -28,6 +28,10 @@ public class ControlModel implements IComListener{
 		comhandler.register(this);
 	}
 	
+	/**
+	 * 
+	 * @return Gibt die Liste der verfuegbaren Befehle zurueck
+	 */
 	public CommandType[] getCommandTypes()
 	{
 		return commandTypes;
