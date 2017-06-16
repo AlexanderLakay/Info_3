@@ -28,6 +28,11 @@ public class ControlModel implements IComListener{
 		comhandler.register(this);
 	}
 	
+	public CommandType[] getCommandTypes()
+	{
+		return commandTypes;
+	}
+	
 	/**
 	 * Gibt das Objekt des ControlModels zurueck und erzeugt gegebenenfalls ein neues
 	 * @return ControlModel
