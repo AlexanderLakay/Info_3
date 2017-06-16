@@ -237,6 +237,7 @@ public class ControlModel implements IComListener{
 		int i = 0;
 		while(true){
 			ICommand c = controlProcess.get(i++);
+			commands.add(c);
 			if(c == null)
 				break;
 		}
