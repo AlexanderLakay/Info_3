@@ -75,8 +75,7 @@ public class Gear extends Command implements IGear {
 
 	
 	public String toString() {
-		return "Gear [getSpeed()=" + getSpeed() + ", getDuration()="
-				+ getDuration() + "]";
+		return "[Gear] speed: " + getSpeed() + ", duration: " + getDuration();
 	}
 	
 }

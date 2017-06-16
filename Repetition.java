@@ -74,8 +74,7 @@ public class Repetition extends Command implements IRepetition {
 
 	
 	public String toString() {
-		return "Repetition [getNrSteps()=" + getNrSteps()
-				+ ", getNrRepetitions()=" + getNrRepetitions() + "]";
+		return "[Repetition] steps: " + getNrSteps() + ", repetitions: " + getNrRepetitions();
 	}
 	
 }

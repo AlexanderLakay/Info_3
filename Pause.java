@@ -54,7 +54,7 @@ public class Pause extends Command implements IPause {
 
 	
 	public String toString() {
-		return "Pause [getDuration()=" + getDuration() + ", getName()=" + getName() + "]";
+		return "[Pause] duration: " + getDuration();
 	}
 
 }	

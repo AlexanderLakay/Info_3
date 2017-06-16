@@ -257,7 +257,7 @@ public class ControlModel implements IComListener{
 	
 	public void commandPerformed(ICommand c)
 	{
-		// TODO Auto-generated method stub
+		//Command zur Ausgabe in der View hinzufuegen (c.toString())
 		
 	}
 

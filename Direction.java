@@ -54,8 +54,8 @@ public class Direction extends Command implements IDirection {		// erbt von Comm
 	}
 
 	
-	public String toString() {														// gibt aktuellen Zustand des Objects zur�ck
-		return "Direction [getDegree()=" + getDegree() + ", getName()=" + getName() + "]";
+	public String toString() {														// gibt aktuellen Zustand des Objects zurueck
+		return "[Direction] degree: " + getDegree();
 	}
 	
 }
