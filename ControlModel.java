@@ -1,4 +1,10 @@
+import hsrt.mec.controldeveloper.core.com.ComHandler;
+import hsrt.mec.controldeveloper.core.com.ComPort;
+import hsrt.mec.controldeveloper.core.com.ComPortHandler;
+import hsrt.mec.controldeveloper.core.com.IComListener;
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
 import hsrt.mec.controldeveloper.io.IOType;
+import hsrt.mec.controldeveloper.io.SerialUSB;
 import hsrt.mec.controldeveloper.io.TextFile;
 import java.io.File;
 import java.util.Vector;
@@ -10,15 +16,16 @@ import java.util.Vector;
  * 
  *
  */
-public class ControlModel {
+public class ControlModel implements IComListener{
 
 	private static ControlModel instance = null;
 	private CommandType commandTypes[] = new CommandType[4];
 	private CommandList controlProcess = new CommandList();
+	private ComHandler comhandler = ComHandler.getInstance();
 	
 	private ControlModel()
 	{
-		// Konstruktor wird nicht benoetigt, da das Objekt durch getInstance() erzeugt wird
+		comhandler.register(this);
 	}
 	
 	/**
@@ -27,7 +34,7 @@ public class ControlModel {
 	 */
 	public static ControlModel getInstance()
 	{
-		// Esgibt immer nur eine Instanz der Klasse
+		// Es gibt immer nur eine Instanz der Klasse
 		if (instance == null)
 			instance = new ControlModel();
 		return instance;
@@ -200,12 +207,6 @@ public class ControlModel {
 		return antwort;
 	}
 	
-	public void commandPerformed(Command c)
-	{
-		
-		
-	}
-	
 	/**
 	 * Gibt die CommandList Instanz der Befehlsliste zurueck
 	 * @return Gibt die CommandList Instanz der Befehlsliste zurueck
@@ -213,6 +214,51 @@ public class ControlModel {
 	public CommandList getControllProcess()
 	{
 		return controlProcess;
+	}
+
+	/**
+	 * 
+	 * @return Gibt die Liste der verfuegbaren ComPorts zurueck
+	 */
+	public ComPort[] getPorts()
+	{
+		return ComPortHandler.getPorts();
+	}
+	
+	/**
+	 * Startet die ausfuehrung der Befehle
+	 * @param portindex Index des zu oeffnenden Ports im Array getPorts()
+	 * @return True, wenn kein Fehler auftrat, andernfalls False
+	 */
+	public boolean start(int portindex)
+	{
+		//Die CommandList muss erst in einen Vektor umgewandelt werden
+		Vector <ICommand>commands = new Vector<ICommand>();
+		int i = 0;
+		while(true){
+			ICommand c = controlProcess.get(i++);
+			if(c == null)
+				break;
+		}
+			
+		IOType port = new SerialUSB(getPorts()[portindex]);
+		return comhandler.start(commands, port);
+		
+	}
+	
+	/**
+	 * Stoppt die Ausfuehrung der Befehle
+	 * @return True, wenn kein Fehler auftrat, andernfalls False
+	 */
+	public boolean stop()
+	{
+		return comhandler.stop();
+	}
+	
+	public void commandPerformed(ICommand c)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }
