@@ -88,13 +88,10 @@ public class ControlDeveloper extends JFrame {
 		hauptfenster.add(panelAblauf, BorderLayout.CENTER);
 		
 		
-	//Übersicht des Programmablaufs
+	//Konfiguration
 		
-		JPanel panelKonfig = new JPanel();
-		JButton pK = new JButton("Hier nachher Konfiguration!");
-		pK.setPreferredSize(new Dimension(150, 400));
-		panelAblauf.add(pK);
-		hauptfenster.add(panelKonfig, BorderLayout.EAST);
+		JPanel konfig = GUI_konfiguration.getInstance();
+		hauptfenster.add(konfig, BorderLayout.EAST);
 		
 		
 	//Fenster sichtbar und schließen 

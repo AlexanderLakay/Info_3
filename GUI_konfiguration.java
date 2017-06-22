@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,35 +9,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Alexander Lakay
+ * Klasse zum Konfigurieren der Befehle
+ *
+ */
 public class GUI_konfiguration extends JPanel implements ActionListener{
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//CardLayout verwenden!!!
-	
-	
-	
-	
-	
-	
-	
-	
-	static GUI_konfiguration konfig = null;
+	private static GUI_konfiguration konfig = null;
 	
 	int breite = 5; // Breite der Textfelder
-	int befehl = 0; // 0 = direction, 1 = gear, 2 = repetition, 3 = pause
+	String befehl = "Direction";
 	GridLayout gl = new GridLayout(0,2);
 	
 	
+	JPanel north = new JPanel(new CardLayout());
 	JPanel south = new JPanel(new BorderLayout());
 	
 	JPanel direction = new JPanel(gl);
@@ -51,24 +39,22 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 	JTextField repetitions = new JTextField(breite);
 	JTextField durationPause = new JTextField(breite);
 	
+	JButton save = new JButton("Save");
+	
+	/**
+	 * 
+	 * @return Gibt die einzige Instanz der Klasse zurueck
+	 */
 	public static GUI_konfiguration getInstance()
 	{
 		if(konfig == null)
-			return new GUI_konfiguration();
-		else
-			return konfig;
+			konfig =  new GUI_konfiguration();
+		return konfig;
 	}
 	
-	public GUI_konfiguration()
+	private GUI_konfiguration()
 	{
 
-		
-		
-		this.setLayout(new BorderLayout());
-		
-		this.add(south, BorderLayout.SOUTH);
-		
-		
 		//direction
 		direction.add(new JLabel("Degree:"));
 		direction.add(degree);
@@ -89,88 +75,63 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		pause.add(new JLabel("Duration: "));
 		pause.add(durationPause);
 		
+	
+		north.add("Direction", direction);
+		north.add("Gear", gear);
+		north.add("Repetition", repetition);
+		north.add("Pause", pause);
 		
 		
-		
-		
-		
-		
-		
-		JButton save = new JButton("Save");
 		save.addActionListener(this);
 		south.add(save, BorderLayout.EAST);
 		
+		this.setLayout(new BorderLayout());
+		this.add(north, BorderLayout.NORTH);
+		this.add(south, BorderLayout.SOUTH);
+		
 	}
 	
+	/**
+	 * Zeigt die zur Konfiguration benoetigten Elemente an
+	 * @param s Name des zu konfigurierenden Befehls "Gear", "Repetition", "Direction" oder "Pause"
+	 */
 	public void select(String s)
 	{
-		if(s.equals("Direction"))
-			select(0);
-		if(s.equals("Gear"))
-			select(1);
-		if(s.equals("Repetition"))
-			select(2);
-		if(s.equals("Pause"))
-			select(3);
+		befehl = s;
+		CardLayout cl = (CardLayout)(north.getLayout());
+		cl.show(north, s);
+		 
 	}
 	
-	public void select(int i)
-	{
-		befehl = i;
-		
-		
-		
-		JPanel north = new JPanel(new BorderLayout());
-		
-		switch (befehl){
-		case 0: 
-			north.add(direction);
-			
-			break;
-		case 1:
-			north.add(gear);
-			
-			break;
-		case 2: 
-			north.add(repetition);
-			
-			break;
-		case 3: 
-
-			north.add(pause);
-			
-			break;
-		}
-		
-		
-		this.add(north, BorderLayout.NORTH);
-		
-	}
-
-	
-	
-	@Override
+	/**
+	 * Beim klick auf den Save Button wird das neue Element gespeichert
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 		Command c = null;
-		switch (befehl){
-		case 0: //direction
+		if(befehl.equals("Direction"))
+			try{
 				c = new Direction("Direction", Integer.parseInt(degree.getText()));
-				break;
-		case 1: //gear
+			}catch(Exception e){}
+			
+		
+		if(befehl.equals("Gear"))
+			try{
 				c = new Gear("Gear", Integer.parseInt(speed.getText()), Double.parseDouble(durationGear.getText()));
+			}catch(Exception e){}
 		
-				break;
-		case 2: //repetition.setVisible(true);
+		if(befehl.equals("Repetition"))
+			try{
 				c = new Gear("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
-				break;
-		case 3: //pause.setVisible(true);
-				c = new Pause("Pause", Double.parseDouble(durationPause.getText()));
-				break;
-					
-		}
+			}catch(Exception e){}
 		
+		if(befehl.equals("Pause"))
+			try{
+				c = new Pause("Pause", Double.parseDouble(durationPause.getText()));
+			}catch(Exception e){}
+		
+		//c an JTable uebergeben
 		ControlModel.getInstance().add(c);
 	}
 
