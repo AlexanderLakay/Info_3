@@ -19,27 +19,27 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 	
 	private static GUI_konfiguration konfig = null;
 	
-	int breite = 5; // Breite der Textfelder
-	String befehl = "Direction";
-	GridLayout gl = new GridLayout(0,2);
+	private int breite = 5; // Breite der Textfelder
+	private String befehl = "Direction";
+	private GridLayout gl = new GridLayout(0,2);
 	
 	
-	JPanel north = new JPanel(new CardLayout());
-	JPanel south = new JPanel(new BorderLayout());
+	private JPanel north = new JPanel(new CardLayout());
+	private JPanel south = new JPanel(new BorderLayout());
 	
-	JPanel direction = new JPanel(gl);
-	JPanel gear = new JPanel(gl);
-	JPanel repetition = new JPanel(gl);
-	JPanel pause = new JPanel(gl);
+	private JPanel direction = new JPanel(gl);
+	private JPanel gear = new JPanel(gl);
+	private JPanel repetition = new JPanel(gl);
+	private JPanel pause = new JPanel(gl);
 	
-	JTextField degree = new JTextField(breite);
-	JTextField speed = new JTextField(breite);
-	JTextField durationGear = new JTextField(breite);
-	JTextField steps = new JTextField(breite);
-	JTextField repetitions = new JTextField(breite);
-	JTextField durationPause = new JTextField(breite);
+	private JTextField degree = new JTextField(breite);
+	private JTextField speed = new JTextField(breite);
+	private JTextField durationGear = new JTextField(breite);
+	private JTextField steps = new JTextField(breite);
+	private JTextField repetitions = new JTextField(breite);
+	private JTextField durationPause = new JTextField(breite);
 	
-	JButton save = new JButton("Save");
+	private JButton save = new JButton("Save");
 	
 	/**
 	 * 
