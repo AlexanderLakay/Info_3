@@ -28,6 +28,11 @@ public class MyTableModel extends AbstractTableModel {
 		return tModel;
 	}
 	
+	MyTableModel()
+	{
+	 
+	}
+	
 
 	/**
 	 * Gibt die Anzahl der Zeilen zurück

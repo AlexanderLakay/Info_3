@@ -9,11 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class GUI_Ablauf extends JPanel{
+public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 	
 	private JTable ablaufTable = new JTable();
 	private static MyTableModel tM;
@@ -91,6 +93,8 @@ public class GUI_Ablauf extends JPanel{
 		});
 		
 		
+		ablaufTable.getSelectionModel().addListSelectionListener(this);
+		
 	}
 
 	public static GUI_Ablauf getInstance() {
@@ -100,6 +104,13 @@ public class GUI_Ablauf extends JPanel{
 			ablauf = new GUI_Ablauf();
 		}
 		return ablauf;
+	}
+
+	public void valueChanged(ListSelectionEvent arg0) {
+		// TODO Auto-generated method stub
+		Command c = ControlModel.getInstance().getControllProcess().get(ablaufTable.getSelectedRow());
+		GUI_konfiguration.getInstance().load(c);
+		GUI_konfiguration.getInstance().select(c.getName());
 	}
 	
 	

@@ -1,3 +1,5 @@
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
@@ -133,6 +135,26 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		
 		//c an JTable uebergeben
 		ControlModel.getInstance().add(c);
+	}
+	
+	public void load(ICommand c)
+	{
+		if(c instanceof Direction){
+			degree.setText(Integer.toString(((Direction) c).getDegree()));
+		}
+		if(c instanceof Gear){
+			speed.setText(Integer.toString(((Gear) c).getSpeed()));
+			durationGear.setText(Double.toString(((Gear) c).getDuration()));
+		}
+		if(c instanceof Repetition){
+			repetitions.setText(Integer.toString(((Repetition) c).getNrRepetitions()));
+			steps.setText(Integer.toString(((Repetition) c).getNrSteps()));
+	
+		}
+		if(c instanceof Pause){
+			durationPause.setText(Double.toString(((Pause) c).getDuration()));
+		}
+			
 	}
 
 }
