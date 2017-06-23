@@ -1,27 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
+ * Klasse zum Ausgeben und Bearbeiten der Tabelle
  * 
- * @author Alexander Lakay
- * Klasse zur Ausgabe der ausgefuehrten Befehle
- *
+ * @author Marcel
  */
+
+
 public class GUI_ausgabe extends JPanel{
 	private static GUI_ausgabe ausgabe = null;
 	private JTextArea tA = new JTextArea();
 	//private JPanel panelAusgabe = new JPanel();
 	
-/**
- * 
- * @return Gibt die einzige Instanz der Klasse zurueck
- */
+
 public static GUI_ausgabe getInstance()
 {
 	if(ausgabe == null)
@@ -31,25 +31,24 @@ public static GUI_ausgabe getInstance()
 
 private GUI_ausgabe()
 {
-	add(tA);
+	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	JScrollPane ausgabeSP = new JScrollPane(tA, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+			 									JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	
+	add(ausgabeSP);
 	setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
-	tA.setPreferredSize( new Dimension(800, 100));
+	tA.setPreferredSize( new Dimension(dim.getSize()));
 	tA.setEditable(false);
+
 	
 }
 
-/**
- * Wird vom Controlmodell aufgerufen
- * @param c Ausgefuehrtes Command
- */
 public void commandPerformed(ICommand c)
 {
 	tA.append(c.toString() + "\n");
 }
 
-/**
- * Leert das ausgabefeld
- */
 public void clear()
 {
 	tA.setText("");
