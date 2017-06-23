@@ -159,6 +159,7 @@ public class ControlModel implements IComListener{
 			controlProcess.add(c);
 		}
 		MyTableModel.getInstance().add();
+		GUI_ausgabe.getInstance().clear();
 		return antwort;
 	}
 	
