@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +17,8 @@ public class GUI_Ablauf extends JPanel{
 	
 	private JTable ablaufTable = new JTable();
 	private static MyTableModel tM;
+	private JPanel bPanel = new JPanel(new BorderLayout());
+	private JPanel bRPanel = new JPanel(new GridLayout(0,4));
 	private JButton removeB = new JButton("Remove");
 	private JButton upB = new JButton("Up");
 	private JButton downB = new JButton("Down");
@@ -28,8 +33,64 @@ public class GUI_Ablauf extends JPanel{
 		this.tM = MyTableModel.getInstance();
 		ablaufTable.setModel(tM);
 	
+		bRPanel.add(upB);
+		bRPanel.add(downB);
+		bRPanel.add(startB);
+		bRPanel.add(stopB);
+		
+		bPanel.add(bRPanel, BorderLayout.EAST);
+		bPanel.add(removeB, BorderLayout.WEST);
+		
 		JScrollPane sP = new JScrollPane(ablaufTable);
-		add(sP, BorderLayout.CENTER);
+		this.add(sP, BorderLayout.CENTER);
+		this.add(bPanel, BorderLayout.SOUTH);
+		
+		
+		removeB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlModel.getInstance().remove(ablaufTable.getSelectedRow());
+			}
+		});
+		
+		
+		upB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlModel.getInstance().moveUp(ablaufTable.getSelectedRow());	
+			}	
+		});
+		
+		
+		downB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlModel.getInstance().moveDown(ablaufTable.getSelectedRow());
+			}
+		});
+		
+		
+		startB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlModel.getInstance().start(0);
+			}	
+		});
+		
+		
+		stopB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlModel.getInstance().stop();
+			}
+		});
+		
+		
 	}
 
 	public static GUI_Ablauf getInstance() {
@@ -40,6 +101,12 @@ public class GUI_Ablauf extends JPanel{
 		}
 		return ablauf;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 
