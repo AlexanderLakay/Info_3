@@ -5,6 +5,7 @@
  */
 public class CommandType {
 
+	private String name;
 	/**
 	 * Ueberschriebene Methode toString(), hier gibt sie den Namen des Command-Befehls zurueck.
 	 * @return name Name des Commands
@@ -12,8 +13,6 @@ public class CommandType {
 	public String toString() {
 		return name;
 	}
-	
-	private String name;
 	
 	/**
 	 * Standardkonstruktor: Macht einen leeren Namen, wenn kein Name uebergeben wird.
