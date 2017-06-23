@@ -101,6 +101,8 @@ public class CommandList {
 			else							// Fehler-Fall: ungueltige pos-Angabe (zu gross)
 				return null;		
 		}		
+		if(tmp == null)
+			return null;
 		return tmp.getElement();			// Gibt das Command-Objekt, das an tmp haengt zurueck.
 	}									
 	
