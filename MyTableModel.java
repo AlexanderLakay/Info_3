@@ -1,5 +1,11 @@
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Klasse, welche die Tabelle konfiguriert und die Daten festlegt
+ * 
+ * @author Marcel
+ */
+
 public class MyTableModel extends AbstractTableModel {
 	
 	private String [] columnNames = { "No.", "Command", "Configuration" };
@@ -7,7 +13,13 @@ public class MyTableModel extends AbstractTableModel {
 	private static MyTableModel tModel = null;
 	
 	
-public static MyTableModel getInstance() {
+	/**
+	 * Erzeugt die Instanz der Klasse
+	 * 
+	 * @return Gibt die einzige Instanz der Klasse zurueck
+	 */
+	
+	public static MyTableModel getInstance() {
 		
 		if (tModel == null) {
 			
@@ -15,8 +27,13 @@ public static MyTableModel getInstance() {
 		}
 		return tModel;
 	}
-
 	
+
+	/**
+	 * Gibt die Anzahl der Zeilen zurück
+	 * @return Anzahl Zeilen
+	 */
+
 	public int getRowCount() {
 		
 		int count = -1;
@@ -26,15 +43,30 @@ public static MyTableModel getInstance() {
 	}
 
 	
+	/**
+	 * Gibt die Anzahl der Spalten zurück
+	 * @return Anzahl Spalten 
+	 */
+	
 	public int getColumnCount() {
 		
 		return columnNames.length;
 	}
 	
+	
+	/**
+	 * Gibt die Anzahl der Spalten-Namen zurück
+	 * @return Namen der Spalten
+	 */
+	
 	public String getColumnName(int column) {
 		
 		return columnNames[column];
 	}
+	
+	/**
+	 * Daten werden in die Tabelle eingetragen; Zeilenweise
+	 */
 	
 	
 	public Object getValueAt(int row, int column) {
@@ -68,7 +100,7 @@ public static MyTableModel getInstance() {
 			}	
 		}
 			
-		return "Test";
+		return "Fehler";
 	}
 	
 	
