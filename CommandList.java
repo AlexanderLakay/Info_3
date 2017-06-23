@@ -48,10 +48,11 @@ public class CommandList {
 	public boolean remove(int pos) {		// ELEMENT AN STELLE POS ENTFERNEN
 		
 		if(pos == 0) {
-											// Wenn erstes Element geloescht werden soll, wird root
-			root = root.getNext();	
-			if(root.getNext() != null)//		auf das zweite Element gesetzt. Das prev des
-				root.getNext().setPrev(null); 	//		zweiten Elements ("root.getNext()") wird zurueck-
+			if(root.getNext() != null)						// Wenn erstes Element geloescht werden soll, wird root
+				root = root.getNext();
+			else
+				root = null;
+
 			return true;					//		gesetzt ("null").
 		}
 		if(pos < 0) {						// Fehlerfall: Ungültige pos-Angabe
