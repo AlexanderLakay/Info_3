@@ -57,7 +57,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			    int returnVal = chooser.showOpenDialog(null);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    
-			          ControlModel.getInstance().load(new File(chooser.getSelectedFile().getName()));
+			          ControlModel.getInstance().load(new File(chooser.getSelectedFile().getPath()));
 			    }
 			}
 			
@@ -69,7 +69,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			    int returnVal = chooser.showSaveDialog(null);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    
-			          ControlModel.getInstance().save(new File(chooser.getSelectedFile().getName()));
+			          ControlModel.getInstance().save(new File(chooser.getSelectedFile().getPath()));
 			    }
 			}
 			
