@@ -43,7 +43,31 @@ public static MyTableModel getInstance() {
 		Command c = ControlModel.getInstance().getControllProcess().get(row);
 		if (column == 0) return (Object)(row+1);
 		if (column == 1 && c !=null) return (Object)(c.getName());
-		if (column == 3) {}
+		if (column == 2) {
+			
+			if (c instanceof Direction) {
+				String dAusgabe = (((Direction) c).getDegree()) +" Degree";
+				return dAusgabe;
+			}
+			
+			if (c instanceof Gear) {
+				String gAusgabe = (((Gear) c).getSpeed()) +" cm/sec; " + 
+									(((Gear) c).getDuration()) +" sec";
+				return gAusgabe;
+			}
+			
+			if (c instanceof Repetition) {
+				String rAusgabe = (((Repetition) c).getNrSteps()) +" Steps; " + 
+									(((Repetition) c).getNrRepetitions()) +" Repetitions"; 
+				return rAusgabe;
+			}
+			
+			if (c instanceof Pause) {
+				String pAusgabe = (((Pause) c).getDuration()) +" sec";
+				return pAusgabe;
+			}	
+		}
+			
 		return "Test";
 	}
 	
