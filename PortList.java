@@ -41,6 +41,7 @@ public class PortList extends JPanel implements ListSelectionListener{
 			
 		jl = new JList(v);
 		add(jl);	
+		jl.addListSelectionListener(this);
 	}
 
 	/**
