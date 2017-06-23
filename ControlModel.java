@@ -243,6 +243,7 @@ public class ControlModel implements IComListener{
 	 */
 	public boolean start(int portindex)
 	{
+		GUI_ausgabe.getInstance().clear();
 		//Die CommandList muss erst in einen Vektor umgewandelt werden
 		Vector <ICommand>commands = new Vector<ICommand>();
 		int i = 0;
