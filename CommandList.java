@@ -1,3 +1,5 @@
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
+
 /**
  * Klasse CommandList stellt eine verkettete Liste zum Einfuegen, Loeschen, Verschieben und 
  * Finden der Command-Befehle dar.
@@ -18,7 +20,7 @@ public class CommandList {
 	 * Wenn add ausgefuehrt wurde, wird true zurueck gegeben, im Fehlerfall false.
 	 * @return true
 	 */
-	public boolean add(Command c) {			// NEUES ELEMENT HINZUFÜGEN
+	public boolean add(Command c) {			// NEUES ELEMENT HINZUFï¿½GEN
 					
 		if(c == null)						// Default-Fall
 			return false;
@@ -55,11 +57,11 @@ public class CommandList {
 
 			return true;					//		gesetzt ("null").
 		}
-		if(pos < 0) {						// Fehlerfall: Ungültige pos-Angabe
+		if(pos < 0) {						// Fehlerfall: Ungï¿½ltige pos-Angabe
 			return false;
 		}
 		
-		// Für den Fall, dass keiner der oberen Faelle zutrifft, macht er hier weiter:
+		// Fï¿½r den Fall, dass keiner der oberen Faelle zutrifft, macht er hier weiter:
 		
 		Element tmp = root;	
 		for (int i = 0; i < pos; i++ ) {	// Faengt beim root-Element an die Liste mit tmp zu durchlaufen.			
@@ -181,5 +183,33 @@ public class CommandList {
 		tmp.setElement(commandFesthalten); 		// Command von danach wird an tmp gehaengt
 		
 		return true;
+	}
+	
+	/**
+	 * Aendert das ueberschreibt das Listenelement an der Stelle index mit c
+	 * @param index Position des zu aendernden Elements
+	 * @param c Neues Command
+	 * @return True bei Erfolg, sonst False
+	 */
+	public boolean setCommand(int index, Command c)
+	{
+		if(index < 0) {						// Default-Fall: ungueltige pos-Angabe.
+			return false;
+		}
+		Element tmp = root;					// Laeuft wie oben die Liste bis zur angegebenen Position
+		for (int i = 0; i < index; i++) {		//		pos durch. Listenende vor pos gibt ein return
+											// 		null. Am Ende der for-Schleife ist tmp mein 
+											//		Element an der Stelle pos.
+			if (tmp.getNext() != null)				
+				tmp = tmp.getNext();
+			else							// Fehler-Fall: ungueltige pos-Angabe (zu gross)
+				return false;		
+		}		
+		if(tmp == null)
+			return false;
+		tmp.setElement(c);
+		return true;
+		
+		
 	}
 }
