@@ -2,12 +2,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 
 public class GUI_menubar extends JMenuBar implements ActionListener {
@@ -48,11 +51,27 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 				
 			
 			//File >> Open
-			if(source.equals(menuItems[0][1]))	{}
+			if(source.equals(menuItems[0][1]))	{
+				
+				JFileChooser chooser = new JFileChooser();
+			    int returnVal = chooser.showOpenDialog(null);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    
+			          ControlModel.getInstance().load(new File(chooser.getSelectedFile().getName()));
+			    }
+			}
 			
 			
 			//File >> Save
-			if(source.equals(menuItems[0][2]))	{}
+			if(source.equals(menuItems[0][2]))	{
+				
+				JFileChooser chooser = new JFileChooser();
+			    int returnVal = chooser.showSaveDialog(null);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    
+			          ControlModel.getInstance().save(new File(chooser.getSelectedFile().getName()));
+			    }
+			}
 			
 				
 			//File >> Close
@@ -61,7 +80,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			
 			//Info >> Help
 			if(source.equals(menuItems[1][0])) {
-				String Help = "http://127.0.0.1:60408/help/index.jsp";
+				String Help = "https://help.eclipse.org/neon/index.jsp";
 				try {
 					java.awt.Desktop.getDesktop().browse(java.net.URI.create(Help));
 				} catch (IOException e) { e.printStackTrace();	}
@@ -89,8 +108,9 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 				
 			//Info >> Copyright
 			if(source.equals(menuItems[1][3])) {
-				JLabel ueber = new JLabel("Copyright: Alexander Lakay, Kai Heckl, Marcel Gaßmann");
-				ueber.setVisible(true);
+			
+				JOptionPane.showMessageDialog(null, "Alexander Lakay, Kai Heckl, Marcel Gaßmann",
+						"Copyright:", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 		}
