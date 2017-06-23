@@ -5,6 +5,10 @@
  */
 public class CommandType {
 
+	public String toString() {
+		return name;
+	}
+	
 	private String name;
 	
 	/**
@@ -16,7 +20,7 @@ public class CommandType {
 	}
 	
 	/**
-	 * Konstruktor, der einen Namen übergeben bekommt und diesen der privaten Variable String name zuordnet.
+	 * Konstruktor, der einen Namen Ã¼bergeben bekommt und diesen der privaten Variable String name zuordnet.
 	 * @param name Name des Commands
 	 */
 	public CommandType(String name)
@@ -41,7 +45,7 @@ public class CommandType {
 	}
 
 	/**
-	 * Methode createInstance() erzeugt je nach Name das zugehörige Objekt
+	 * Methode createInstance() erzeugt je nach Name das zugehÃ¶rige Objekt
 	 * @return new Direction("Direction") bzw. Gear, Repetition, Pause.
 	 */
 	public Command createInstance()
