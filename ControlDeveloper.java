@@ -41,18 +41,6 @@ public class ControlDeveloper extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		
-	
-		testCommands();
-		
-		for (int i = 0; i < 4; i++) {
-			cm.add(commands[i]);		// Befehlsliste aus Array befuellen
-			
-		}
-		
-		
-		
-		
 	
 	//GUI-Programmierung
 		
