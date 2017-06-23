@@ -8,6 +8,7 @@ public class CommandType {
 	/**
 	 * Ueberschriebene Methode toString(), hier gibt sie den Namen des Command-Befehls zurueck.
 	 * @return name Name des Commands
+	 */
 	public String toString() {
 		return name;
 	}
