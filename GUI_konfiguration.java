@@ -133,7 +133,7 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		
 		//c an JTable uebergeben
 		ControlModel.getInstance().add(c);
-		MyTableModel.getInstance();
+		MyTableModel.getInstance().add();
 	}
 
 }
