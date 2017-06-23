@@ -124,6 +124,7 @@ public class ControlModel implements IComListener{
 	
 	public boolean setCommand(int index, Command c)
 	{
+		MyTableModel.getInstance().fireTableDataChanged();
 		return controlProcess.setCommand(index, c);
 	}
 	

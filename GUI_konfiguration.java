@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  * Klasse zum Konfigurieren der Befehle
  *
  */
-public class GUI_konfiguration extends JPanel implements ActionListener{
+public class GUI_konfiguration extends JPanel{
 	
 	private static GUI_konfiguration konfig = null;
 	
@@ -42,6 +42,7 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 	private JTextField durationPause = new JTextField(breite);
 	
 	private JButton save = new JButton("Save");
+	private JButton add = new JButton("Add");
 	
 	/**
 	 * 
@@ -84,8 +85,71 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		north.add("Pause", pause);
 		
 		
-		save.addActionListener(this);
+		add.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Command c = null;
+				if(befehl.equals("Direction"))
+					try{
+						c = new Direction("Direction", Integer.parseInt(degree.getText()));
+					}catch(Exception e){}
+					
+				
+				if(befehl.equals("Gear"))
+					try{
+						c = new Gear("Gear", Integer.parseInt(speed.getText()), Double.parseDouble(durationGear.getText()));
+					}catch(Exception e){}
+				
+				if(befehl.equals("Repetition"))
+					try{
+						c = new Repetition("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
+					}catch(Exception e){}
+				
+				if(befehl.equals("Pause"))
+					try{
+						c = new Pause("Pause", Double.parseDouble(durationPause.getText()));
+					}catch(Exception e){}
+				
+				//c an JTable uebergeben
+				ControlModel.getInstance().add(c);
+			}
+			
+		});
+		
+		save.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Command c = null;
+				if(befehl.equals("Direction"))
+					try{
+						c = new Direction("Direction", Integer.parseInt(degree.getText()));
+					}catch(Exception e){}
+					
+				
+				if(befehl.equals("Gear"))
+					try{
+						c = new Gear("Gear", Integer.parseInt(speed.getText()), Double.parseDouble(durationGear.getText()));
+					}catch(Exception e){}
+				
+				if(befehl.equals("Repetition"))
+					try{
+						c = new Repetition("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
+					}catch(Exception e){}
+				
+				if(befehl.equals("Pause"))
+					try{
+						c = new Pause("Pause", Double.parseDouble(durationPause.getText()));
+					}catch(Exception e){}
+				
+				//c an JTable uebergeben
+				ControlModel.getInstance().setCommand(GUI_Ablauf.getInstance().getSelectedIndex(), c);
+			}
+			
+		});
 		south.add(save, BorderLayout.EAST);
+		south.add(add, BorderLayout.WEST);
 		
 		this.setLayout(new BorderLayout());
 		this.add(north, BorderLayout.NORTH);
@@ -105,37 +169,8 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		 
 	}
 	
-	/**
-	 * Beim klick auf den Save Button wird das neue Element gespeichert
-	 */
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		Command c = null;
-		if(befehl.equals("Direction"))
-			try{
-				c = new Direction("Direction", Integer.parseInt(degree.getText()));
-			}catch(Exception e){}
-			
-		
-		if(befehl.equals("Gear"))
-			try{
-				c = new Gear("Gear", Integer.parseInt(speed.getText()), Double.parseDouble(durationGear.getText()));
-			}catch(Exception e){}
-		
-		if(befehl.equals("Repetition"))
-			try{
-				c = new Repetition("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
-			}catch(Exception e){}
-		
-		if(befehl.equals("Pause"))
-			try{
-				c = new Pause("Pause", Double.parseDouble(durationPause.getText()));
-			}catch(Exception e){}
-		
-		//c an JTable uebergeben
-		ControlModel.getInstance().add(c);
-	}
+	
+	
 	
 	public void load(ICommand c)
 	{

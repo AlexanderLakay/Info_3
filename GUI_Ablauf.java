@@ -28,6 +28,7 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 	private JButton startB = new JButton("Start");
 	
 	private static GUI_Ablauf ablauf = null;
+	private int selectedIndex = 0;
 
 	private GUI_Ablauf ( ) {
 		
@@ -108,9 +109,16 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
-		Command c = ControlModel.getInstance().getControllProcess().get(ablaufTable.getSelectedRow());
+		selectedIndex = ablaufTable.getSelectedRow();
+		Command c = ControlModel.getInstance().getControllProcess().get(selectedIndex);
 		GUI_konfiguration.getInstance().load(c);
+		if(c != null)
 		GUI_konfiguration.getInstance().select(c.getName());
+	}
+	
+	public int getSelectedIndex()
+	{
+		return selectedIndex;
 	}
 	
 	

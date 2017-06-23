@@ -193,7 +193,7 @@ public class CommandList {
 	 */
 	public boolean setCommand(int index, Command c)
 	{
-		if(index < 0) {						// Default-Fall: ungueltige pos-Angabe.
+		if(index < 0 || c == null) {						// Default-Fall: ungueltige pos-Angabe.
 			return false;
 		}
 		Element tmp = root;					// Laeuft wie oben die Liste bis zur angegebenen Position
