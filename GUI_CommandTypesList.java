@@ -35,6 +35,7 @@ public class GUI_CommandTypesList extends JPanel implements ListSelectionListene
 	
 	/**
 	 * Methode, um die Command-Befehle in ein String-Array einzufuegen, welches dann angezeigt wird.
+	 * Wird nur vom Konstruktor verwendet, daher private.
 	 * @return CommandBefehle Liste der Command-Befehle
 	 */
 	private String[] createList() {
