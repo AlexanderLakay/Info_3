@@ -47,7 +47,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			Object source = evt.getSource();
 			
 			//File >> New
-			if(source.equals(menuItems[0][0])) {}
+			if(source.equals(menuItems[0][0])) {ControlModel.getInstance().clear();}
 				
 			
 			//File >> Open

@@ -271,5 +271,11 @@ public class ControlModel implements IComListener{
 		//Command zur Ausgabe in der View hinzufuegen (c.toString())
 		
 	}
+	
+	public void clear()
+	{
+		controlProcess = new CommandList();
+		MyTableModel.getInstance().fireTableDataChanged();
+	}
 
 }
