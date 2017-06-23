@@ -26,6 +26,7 @@ public class ControlModel implements IComListener{
 	private ControlModel()
 	{
 		comhandler.register(this);
+		this.createCommandTyes();
 	}
 	
 	/**
