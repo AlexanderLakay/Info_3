@@ -114,31 +114,11 @@ public class ControlDeveloper extends JFrame {
 		
 		
 		
-		//////////////////////////
-		
-		// Array befuellen
-		testCommands();
-		//printCommands();
-		
-
-		
-		/*for (int i = 0; i < 4; i++) {
-			cm.add(commands[i]);		// Befehlsliste aus Array befuellen
-			
-		}*/
 	
-	
-		// Testen von speichern und Laden
-		File daten = new File("daten.txt");
-		cm.save(daten);
-		//cm.load(daten);
 		
 		
-		// Befehlsliste ausgeben
-		for (int i = 0; i < 5; i++) {
-			if(cm.get(i) instanceof Command)
-				System.out.println(cm.get(i).toString());
-		}
+		
+		
 		
 	}
 	
@@ -151,18 +131,9 @@ public class ControlDeveloper extends JFrame {
 		name = neuerName;						 				//		ueberschreibt alten Namen damit.
 	}
 	
-	/*public static void testCommands () {			
-		commands[0] = new Direction("Direction", 90);			// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
-		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
-		commands[2] = new Repetition("Repetition",3, 10);
-		commands[3] = new Pause("Pause", 30);				
-	}*/
+
 	
-	public static void printCommands() {
-		for(int i = 0; i < 4; i++) {
-			System.out.println(commands[i].toString());
-		}
-	}
+	
 }
 
 // Wozu dient der Modifizierer static?
