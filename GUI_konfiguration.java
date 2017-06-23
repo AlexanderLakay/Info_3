@@ -123,7 +123,7 @@ public class GUI_konfiguration extends JPanel implements ActionListener{
 		
 		if(befehl.equals("Repetition"))
 			try{
-				c = new Gear("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
+				c = new Repetition("Repetition", Integer.parseInt(steps.getText()), Integer.parseInt(repetitions.getText()));
 			}catch(Exception e){}
 		
 		if(befehl.equals("Pause"))
