@@ -12,6 +12,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+/**
+ * Klasse zum Erzeugen der Menu-Bar mit einzelnen Untermenues
+ * 
+ * @author Marcel
+ */
 
 public class GUI_menubar extends JMenuBar implements ActionListener {
 	
@@ -42,11 +47,15 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			}
 		}
 	}
+	
+	/**
+	 * Abfrage der Klicks und Aufruf der jeweiligen Funktion
+	 */
 		
-		public void actionPerformed (ActionEvent evt) {
-			Object source = evt.getSource();
+	public void actionPerformed (ActionEvent evt) {
+		Object source = evt.getSource();
 			
-			//File >> New
+		//File >> New
 			if(source.equals(menuItems[0][0])) {ControlModel.getInstance().clear(); GUI_ausgabe.getInstance().clear();}
 				
 			
