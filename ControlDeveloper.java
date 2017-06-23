@@ -31,7 +31,9 @@ public class ControlDeveloper extends JFrame {
 	private static Command commands[] = new Command[4];
 	private static ControlModel cm = ControlModel.getInstance();
 
-	
+	/**
+	 * Methode, die zu Testzwecken eine Liste mit Commands erzeugt.
+	 */
 	public static void testCommands () {			
 		commands[0] = new Direction("Direction", 90);			// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
 		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
