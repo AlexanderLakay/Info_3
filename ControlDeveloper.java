@@ -31,9 +31,7 @@ public class ControlDeveloper extends JFrame {
 	private static Command commands[] = new Command[4];
 	private static ControlModel cm = ControlModel.getInstance();
 
-	/**
-	 * Methode, die zu Testzwecken eine Liste mit Commands erzeugt.
-	 */
+	
 	public static void testCommands () {			
 		commands[0] = new Direction("Direction", 90);			// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
 		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
@@ -46,10 +44,10 @@ public class ControlDeveloper extends JFrame {
 	
 	//GUI-Programmierung
 		
-		
 		JFrame hauptfenster = new JFrame ("Steuerung Fahrzeug");
+		JPanel hauptpanel = new JPanel();
 		hauptfenster.setLayout(new BorderLayout());
-		hauptfenster.setSize(800, 500);
+		hauptfenster.setSize(800, 650);
 		hauptfenster.setLocationRelativeTo(null);
 		hauptfenster.setResizable(true);
 		
@@ -67,35 +65,43 @@ public class ControlDeveloper extends JFrame {
 	//CommandTypes_Liste
 		
 		GUI_CommandTypesList CTL = new GUI_CommandTypesList();
-		JPanel panelList = new JPanel();
-		panelList.add(CTL);
+		JPanel panelList = new JPanel(new BorderLayout());
+		panelList.add(CTL, BorderLayout.NORTH);
 		//panelList.setSize(40, 60);
-		panelList.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));	
-		hauptfenster.add(panelList, BorderLayout.WEST);
+		//panelList.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));	
 		
+		panelList.add(PortList.getInstance(), BorderLayout.SOUTH);
+		
+		hauptpanel.add(panelList, BorderLayout.WEST);
 
 	//Ausgabefenster
 		
-		
-		hauptfenster.add(GUI_ausgabe.getInstance(), BorderLayout.SOUTH);
-		
+		JPanel panelAusgabe = GUI_ausgabe.getInstance();
+		panelAusgabe.setPreferredSize(new Dimension (hauptfenster.getWidth(), 
+											((hauptfenster.getHeight()/100)*18)));
+		hauptfenster.add(panelAusgabe, BorderLayout.SOUTH);
 		
 		
 	//Übersicht des Programmablaufs
 		
-		
 		JPanel panelAblauf = GUI_Ablauf.getInstance();
-		hauptfenster.add(panelAblauf, BorderLayout.CENTER);
+		//panelAblauf.setPreferredSize(new Dimension (((hauptfenster.getWidth()/100)*50), 
+										//((hauptfenster.getHeight()/100)*70)));
+		hauptpanel.add(panelAblauf, BorderLayout.CENTER);
 		
 		
 	//Übersicht der Konfiguration
 		
 		JPanel konfig = GUI_konfiguration.getInstance();
-		hauptfenster.add(konfig, BorderLayout.EAST);
+		hauptpanel.add(konfig, BorderLayout.EAST);
+		
 		
 		
 	//Fenster sichtbar und schließen 
 		
+		hauptfenster.add(hauptpanel, BorderLayout.CENTER);
+		hauptfenster.setMinimumSize(new Dimension(820,620));
+		hauptfenster.setMaximumSize(new Dimension(820,620));
 		hauptfenster.setVisible(true);
 		hauptfenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
