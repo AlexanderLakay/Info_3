@@ -32,9 +32,26 @@ public class ControlDeveloper extends JFrame {
 	private static ControlModel cm = ControlModel.getInstance();
 
 	
+	public static void testCommands () {			
+		commands[0] = new Direction("Direction", 90);			// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
+		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
+		commands[2] = new Repetition("Repetition",3, 10);
+		commands[3] = new Pause("Pause", 30);				
+	}
 	
 	
 	public static void main(String[] args) {
+		
+	
+		testCommands();
+		
+		for (int i = 0; i < 4; i++) {
+			cm.add(commands[i]);		// Befehlsliste aus Array befuellen
+			
+		}
+		
+		
+		
 		
 	
 	//GUI-Programmierung
@@ -54,8 +71,6 @@ public class ControlDeveloper extends JFrame {
 		JPanel panelMenuBar = new JPanel();
 		panelMenuBar.add(mb);
 		panelMenuBar.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		//panelMenuBar.setBounds(0, 0, 800, 20);;
-		//panelMenuBar.setVisible(true);
 		hauptfenster.add(panelMenuBar, BorderLayout.NORTH);
 		
 		
@@ -81,14 +96,12 @@ public class ControlDeveloper extends JFrame {
 		
 	//Übersicht des Programmablaufs
 		
-		JPanel panelAblauf = new JPanel();
-		JButton pA = new JButton("Hier nachher Programmablauf!");
-		pA.setPreferredSize(new Dimension(450, 400));
-		panelAblauf.add(pA);
+		
+		JPanel panelAblauf = GUI_Ablauf.getInstance();
 		hauptfenster.add(panelAblauf, BorderLayout.CENTER);
 		
 		
-	//Konfiguration
+	//Übersicht der Konfiguration
 		
 		JPanel konfig = GUI_konfiguration.getInstance();
 		hauptfenster.add(konfig, BorderLayout.EAST);
@@ -109,10 +122,10 @@ public class ControlDeveloper extends JFrame {
 		
 
 		
-		for (int i = 0; i < 4; i++) {
+		/*for (int i = 0; i < 4; i++) {
 			cm.add(commands[i]);		// Befehlsliste aus Array befuellen
 			
-		}
+		}*/
 	
 	
 		// Testen von speichern und Laden
@@ -134,16 +147,16 @@ public class ControlDeveloper extends JFrame {
 		return name;
 	}
 	
-	public static void setname (String neuerName) {	// set-Methode: Bekommt neuen Namen uebergeben und 
-		name = neuerName;						 	//		ueberschreibt alten Namen damit.
+	public static void setname (String neuerName) {				// set-Methode: Bekommt neuen Namen uebergeben und 
+		name = neuerName;						 				//		ueberschreibt alten Namen damit.
 	}
 	
-	public static void testCommands () {			
-		commands[0] = new Direction("Direction", 90);	// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
+	/*public static void testCommands () {			
+		commands[0] = new Direction("Direction", 90);			// erzeuge hier Objekte vom Typ der jeweiligen Klassen, speichere diese
 		commands[1] = new Gear("Gear", 100, 10);				// 		nacheinander in das Array.
 		commands[2] = new Repetition("Repetition",3, 10);
 		commands[3] = new Pause("Pause", 30);				
-	}
+	}*/
 	
 	public static void printCommands() {
 		for(int i = 0; i < 4; i++) {
