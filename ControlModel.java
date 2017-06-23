@@ -70,7 +70,9 @@ public class ControlModel implements IComListener{
 	 */
 	public boolean add(Command c) 
 	{
-		return controlProcess.add(c);
+		boolean antwort =  controlProcess.add(c);
+		MyTableModel.getInstance().fireTableDataChanged();
+		return antwort;
 	}
 	
 	/**
@@ -80,7 +82,9 @@ public class ControlModel implements IComListener{
 	 */
 	public boolean remove(int pos)
 	{
-		return controlProcess.remove(pos);
+		boolean antwort =  controlProcess.remove(pos);
+		MyTableModel.getInstance().fireTableDataChanged();
+		return antwort;
 	}
 	
 	/**
@@ -100,7 +104,9 @@ public class ControlModel implements IComListener{
 	 */
 	public boolean moveUp(int pos)
 	{
-		return controlProcess.moveUp(pos);
+		boolean antwort =  controlProcess.moveUp(pos);
+		MyTableModel.getInstance().fireTableDataChanged();
+		return antwort;
 	}
 	
 	/**
@@ -110,7 +116,10 @@ public class ControlModel implements IComListener{
 	 */
 	public boolean moveDown(int pos)
 	{
-		return controlProcess.moveDown(pos);
+		boolean antwort = controlProcess.moveDown(pos);
+		MyTableModel.getInstance().fireTableDataChanged();
+		return antwort;
+		
 	}
 	
 	
