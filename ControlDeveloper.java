@@ -74,12 +74,9 @@ public class ControlDeveloper extends JFrame {
 
 	//Ausgabefenster
 		
-		JTextArea tA = new JTextArea();
-		tA.setPreferredSize( new Dimension(800, 100));
-		JPanel panelAusgabe = new JPanel();
-		panelAusgabe.add(tA);
-		panelAusgabe.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
-		hauptfenster.add(panelAusgabe, BorderLayout.SOUTH);
+		
+		hauptfenster.add(GUI_ausgabe.getInstance(), BorderLayout.SOUTH);
+		
 		
 		
 	//Übersicht des Programmablaufs

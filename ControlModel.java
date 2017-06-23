@@ -268,7 +268,7 @@ public class ControlModel implements IComListener{
 	
 	public void commandPerformed(ICommand c)
 	{
-		//Command zur Ausgabe in der View hinzufuegen (c.toString())
+		GUI_ausgabe.getInstance().commandPerformed(c);
 		
 	}
 	
