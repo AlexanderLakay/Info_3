@@ -43,7 +43,7 @@ public class GUI_CommandTypesList extends JPanel implements ListSelectionListene
 		for (int i = 0; i < 4; i++) {					// Mithilfe von toString() sollen die CommandTypes als Strings in
 			CommandBefehle[i] = commandTypes[i].toString();		//		CommandBefehle rein geschrieben werden.
 		};
-		return Commandbefehle;
+		return CommandBefehle;
 	}
 	
 	/**
