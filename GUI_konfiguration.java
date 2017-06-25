@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * Klasse zum Konfigurieren der Befehle
  * 
  * @author Alexander Lakay
- * Klasse zum Konfigurieren der Befehle
- *
  */
+
 public class GUI_konfiguration extends JPanel{
 	
 	private static GUI_konfiguration konfig = null;
@@ -169,7 +169,10 @@ public class GUI_konfiguration extends JPanel{
 		 
 	}
 	
-	
+	/**
+	 * Laed die Informationen des ausgewaehlten Befehls neu
+	 * @param c Parameter des ausgewaehlten Befehls
+	 */
 	
 	
 	public void load(ICommand c)

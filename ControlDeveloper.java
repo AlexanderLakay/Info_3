@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.File;
@@ -47,7 +46,7 @@ public class ControlDeveloper extends JFrame {
 		JFrame hauptfenster = new JFrame ("Steuerung Fahrzeug");
 		JPanel hauptpanel = new JPanel();
 		hauptfenster.setLayout(new BorderLayout());
-		hauptfenster.setSize(800, 650);
+		hauptfenster.setMinimumSize(new Dimension(820, 650));
 		hauptfenster.setLocationRelativeTo(null);
 		hauptfenster.setResizable(true);
 		
@@ -67,10 +66,12 @@ public class ControlDeveloper extends JFrame {
 		GUI_CommandTypesList CTL = new GUI_CommandTypesList();
 		JPanel panelList = new JPanel(new BorderLayout());
 		panelList.add(CTL, BorderLayout.NORTH);
-		//panelList.setSize(40, 60);
+		panelList.setPreferredSize(new Dimension(180, 460));
 		//panelList.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));	
 		
-		panelList.add(PortList.getInstance(), BorderLayout.SOUTH);
+		JPanel pl = PortList.getInstance();
+		pl.setPreferredSize(new Dimension(180, 100));
+		panelList.add(pl, BorderLayout.SOUTH);
 		
 		hauptpanel.add(panelList, BorderLayout.WEST);
 
@@ -78,7 +79,7 @@ public class ControlDeveloper extends JFrame {
 		
 		JPanel panelAusgabe = GUI_ausgabe.getInstance();
 		panelAusgabe.setPreferredSize(new Dimension (hauptfenster.getWidth(), 
-											((hauptfenster.getHeight()/100)*18)));
+											((hauptfenster.getHeight()/100)*22)));
 		hauptfenster.add(panelAusgabe, BorderLayout.SOUTH);
 		
 		
@@ -100,8 +101,6 @@ public class ControlDeveloper extends JFrame {
 	//Fenster sichtbar und schließen 
 		
 		hauptfenster.add(hauptpanel, BorderLayout.CENTER);
-		hauptfenster.setMinimumSize(new Dimension(820,620));
-		hauptfenster.setMaximumSize(new Dimension(820,620));
 		hauptfenster.setVisible(true);
 		hauptfenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

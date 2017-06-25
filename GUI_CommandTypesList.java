@@ -7,8 +7,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- * @author Alexander Lakay, Marcel Gassmann, Kai Heckl
  * Klasse zum Verwalten der Command-Liste links in der GUI.
+ * 
+ * @author Alexander Lakay, Marcel Gassmann, Kai Heckl
+ * 
  */
 public class GUI_CommandTypesList extends JPanel implements ListSelectionListener{	// implementiert Interface ListSelectionListener,
 											//		damit er auf Auswahl reagiert.
@@ -27,7 +29,7 @@ public class GUI_CommandTypesList extends JPanel implements ListSelectionListene
 											// 		ListSelectionListener ist (wurde implementiert).
 		JScrollPane listscroll = new JScrollPane(CT, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 	// Fuer die Scrollbar
 							 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		listscroll.setPreferredSize(new Dimension(100, 400));
+		listscroll.setPreferredSize(new Dimension(120, 300));
 		
 		this.add(listscroll);
 				

@@ -5,20 +5,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
+
+/**
+ * Klasse, welche den Ablauf des Programms anzeigt - in Form einer Tabelle
+ * 
+ * @author Marcel
+ */
 
 public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 	
 	private JTable ablaufTable = new JTable();
 	private static MyTableModel tM;
+	private JPanel ablaufPanel = new JPanel(new BorderLayout());
 	private JPanel bPanel = new JPanel(new BorderLayout());
 	private JPanel bRPanel = new JPanel(new GridLayout(0,4));
 	private JButton removeB = new JButton("Remove");
@@ -30,6 +34,10 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 	private static GUI_Ablauf ablauf = null;
 	private int selectedIndex = 0;
 
+	/**
+	 * Konstruktor der Klasse, mit allen noetigen Elementen
+	 */
+	
 	private GUI_Ablauf ( ) {
 		
 		
@@ -45,8 +53,9 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 		bPanel.add(removeB, BorderLayout.WEST);
 		
 		JScrollPane sP = new JScrollPane(ablaufTable);
-		this.add(sP, BorderLayout.CENTER);
-		this.add(bPanel, BorderLayout.SOUTH);
+		ablaufPanel.add(sP, BorderLayout.CENTER);
+		ablaufPanel.add(bPanel, BorderLayout.SOUTH);
+		this.add(ablaufPanel);
 		
 		
 		removeB.addActionListener(new ActionListener() {
@@ -98,6 +107,11 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 		
 	}
 
+	/**
+	 * 
+	 * @return Gibt die einzige Instanz der Klasse zurueck
+	 */
+	
 	public static GUI_Ablauf getInstance() {
 		
 		if (ablauf == null) {
@@ -107,14 +121,23 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 		return ablauf;
 	}
 
+	/**
+	 * Funktion zum Aendern der Tabellenwerte
+	 */
+	
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
+		
 		selectedIndex = ablaufTable.getSelectedRow();
 		Command c = ControlModel.getInstance().getControllProcess().get(selectedIndex);
 		GUI_konfiguration.getInstance().load(c);
 		if(c != null)
 		GUI_konfiguration.getInstance().select(c.getName());
 	}
+	
+	/**
+	 * 
+	 * @return Ausgewaehlte Zeile
+	 */
 	
 	public int getSelectedIndex()
 	{
