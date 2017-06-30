@@ -89,7 +89,7 @@ public class GUI_Ablauf extends JPanel implements ListSelectionListener{
 
 			public void actionPerformed(ActionEvent e) {
 				
-				ControlModel.getInstance().start(0);
+				ControlModel.getInstance().start(selectedIndex);
 			}	
 		});
 		

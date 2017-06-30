@@ -107,7 +107,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			
 			//Info >> JavaDoc
 			if(source.equals(menuItems[1][2])) {
-				String JavaDoc = "file:///Users/Marcel/Desktop/FH%20Reutlingen/3.%20Semester/Informatik%203/workspace/2017_ss_mec_praktikum_gruppe/doc/index.html";
+				String JavaDoc = "file://///WINCL/users/lakay/Desktop/Info/Info/doc/index.html";
 				try {
 					java.awt.Desktop.getDesktop().browse(java.net.URI.create(JavaDoc));
 				} catch (IOException e) { e.printStackTrace();	}
@@ -118,7 +118,7 @@ public class GUI_menubar extends JMenuBar implements ActionListener {
 			//Info >> Copyright
 			if(source.equals(menuItems[1][3])) {
 			
-				JOptionPane.showMessageDialog(null, "Alexander Lakay, Kai Heckl, Marcel Gaßmann",
+				JOptionPane.showMessageDialog(null, "Alexander Lakay, Kai Heckl, Marcel Gassmann",
 						"Copyright:", JOptionPane.INFORMATION_MESSAGE);
 			}
 			

@@ -3,6 +3,7 @@ import hsrt.mec.controldeveloper.core.com.ComPort;
 import hsrt.mec.controldeveloper.core.com.ComPortHandler;
 import hsrt.mec.controldeveloper.core.com.IComListener;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
+import hsrt.mec.controldeveloper.io.Console;
 import hsrt.mec.controldeveloper.io.IOType;
 import hsrt.mec.controldeveloper.io.SerialUSB;
 import hsrt.mec.controldeveloper.io.TextFile;
@@ -265,12 +266,16 @@ public class ControlModel implements IComListener{
 		int i = 0;
 		while(true){
 			ICommand c = controlProcess.get(i++);
-			commands.add(c);
 			if(c == null)
 				break;
+
+			commands.add(c);
 		}
 			
 		IOType port = new SerialUSB(getPorts()[portindex]);
+		// IOType port= new Console();
+		System.out.println(commands);
+		
 		return comhandler.start(commands, port);
 		
 	}

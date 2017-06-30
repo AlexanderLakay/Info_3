@@ -46,7 +46,7 @@ public class ControlDeveloper extends JFrame {
 		JFrame hauptfenster = new JFrame ("Steuerung Fahrzeug");
 		JPanel hauptpanel = new JPanel();
 		hauptfenster.setLayout(new BorderLayout());
-		hauptfenster.setMinimumSize(new Dimension(820, 650));
+		hauptfenster.setMinimumSize(new Dimension(820, 670));
 		hauptfenster.setLocationRelativeTo(null);
 		hauptfenster.setResizable(true);
 		
@@ -83,7 +83,7 @@ public class ControlDeveloper extends JFrame {
 		hauptfenster.add(panelAusgabe, BorderLayout.SOUTH);
 		
 		
-	//Übersicht des Programmablaufs
+	//Uebersicht des Programmablaufs
 		
 		JPanel panelAblauf = GUI_Ablauf.getInstance();
 		//panelAblauf.setPreferredSize(new Dimension (((hauptfenster.getWidth()/100)*50), 
@@ -91,14 +91,14 @@ public class ControlDeveloper extends JFrame {
 		hauptpanel.add(panelAblauf, BorderLayout.CENTER);
 		
 		
-	//Übersicht der Konfiguration
+	//Uebersicht der Konfiguration
 		
 		JPanel konfig = GUI_konfiguration.getInstance();
 		hauptpanel.add(konfig, BorderLayout.EAST);
 		
 		
 		
-	//Fenster sichtbar und schließen 
+	//Fenster sichtbar und schliessen 
 		
 		hauptfenster.add(hauptpanel, BorderLayout.CENTER);
 		hauptfenster.setVisible(true);

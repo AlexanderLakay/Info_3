@@ -28,14 +28,10 @@ public class MyTableModel extends AbstractTableModel {
 		return tModel;
 	}
 	
-	MyTableModel()
-	{
-	 
-	}
 	
 
 	/**
-	 * Gibt die Anzahl der Zeilen zurück
+	 * Gibt die Anzahl der Zeilen zurueck
 	 * @return Anzahl Zeilen
 	 */
 
@@ -49,7 +45,7 @@ public class MyTableModel extends AbstractTableModel {
 
 	
 	/**
-	 * Gibt die Anzahl der Spalten zurück
+	 * Gibt die Anzahl der Spalten zurueck
 	 * @return Anzahl Spalten 
 	 */
 	
@@ -60,7 +56,7 @@ public class MyTableModel extends AbstractTableModel {
 	
 	
 	/**
-	 * Gibt die Anzahl der Spalten-Namen zurück
+	 * Gibt die Namen der Spalten-Namen zurueck
 	 * @return Namen der Spalten
 	 */
 	
